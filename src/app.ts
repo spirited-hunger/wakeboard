@@ -2,10 +2,6 @@ const WAKE_UP_TIME = "06:00";
 const WAKE_UP_HOURS = WAKE_UP_TIME.split(":")[0];
 const WAKE_UP_MINUTES = WAKE_UP_TIME.split(":")[1];
 
-const NIGHT_TIME = "18:00";
-const NIGHT_HOURS = NIGHT_TIME.split(":")[0];
-const NIGHT_MINUTES = NIGHT_TIME.split(":")[1];
-
 let opened = false;
 
 class App {
@@ -53,24 +49,27 @@ class App {
       date.getMonth(),
       date.getDate(),
       date.getFullYear(),
-      date.getHours(),
-      date.getMinutes(),
-      date.getSeconds(),
+      date.getHours().toString().padStart(2, "0"),
+      date.getMinutes().toString().padStart(2, "0"),
+      date.getSeconds().toString().padStart(2, "0"),
     ];
 
     // display the sunrise and sunset
+
     if (
+      !opened &&
+      Number(hour) === Number(WAKE_UP_HOURS) &&
+      Number(minutes) === Number(WAKE_UP_MINUTES)
+    ) {
+      opened = true;
+      window.open(this.url.value, "_blank");
+    } else if (
       // night time
-      hour.toString() >= NIGHT_HOURS &&
-      minutes.toString() >= NIGHT_MINUTES
+      Number(hour) !== Number(WAKE_UP_HOURS) &&
+      Number(minutes) !== Number(WAKE_UP_MINUTES)
     ) {
       opened = false;
     }
-
-    if (!opened && hour.toString() === WAKE_UP_HOURS && minutes.toString() === WAKE_UP_MINUTES) {
-      opened = true;
-      window.open(this.url.value, "_blank");
-    };
 
     // display the current time
     this.ctx.fillStyle = "#D0CCCA";
