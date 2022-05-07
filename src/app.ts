@@ -1,4 +1,15 @@
+const WAKE_UP_TIME = "15:19";
+const WAKE_UP_HOURS = WAKE_UP_TIME.split(":")[0];
+const WAKE_UP_MINUTES = WAKE_UP_TIME.split(":")[1];
+
+const NIGHT_TIME = "18:00";
+const NIGHT_HOURS = NIGHT_TIME.split(":")[0];
+const NIGHT_MINUTES = NIGHT_TIME.split(":")[1];
+
+let opened = false;
+
 class App {
+  url: HTMLInputElement;
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
   pixelRatio: number;
@@ -15,6 +26,8 @@ class App {
     window.addEventListener("resize", this.resize.bind(this), false);
 
     this.resize();
+
+    this.url = document.getElementById("url") as HTMLInputElement;
 
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -34,17 +47,45 @@ class App {
 
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
-    // // Drawing a simple circle
-    // this.ctx.fillStyle = "#000";
-    // this.ctx.beginPath();
-    // this.ctx.arc(
-    //   this.stageWidth / 2,
-    //   this.stageHeight / 2,
-    //   100,
-    //   0,
-    //   2 * Math.PI
-    // );
-    // this.ctx.fill();
+    // get the current time
+    const date = new Date();
+    const [month, day, year, hour, minutes, seconds] = [
+      date.getMonth(),
+      date.getDate(),
+      date.getFullYear(),
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+    ];
+
+    // display the sunrise and sunset
+    if (
+      // night time
+      hour.toString() >= NIGHT_HOURS &&
+      minutes.toString() >= NIGHT_MINUTES
+    ) {
+      opened = false;
+    }
+
+    if (!opened && hour.toString() === WAKE_UP_HOURS && minutes.toString() === WAKE_UP_MINUTES) {
+      opened = true;
+      window.open(this.url.value, "_blank");
+    };
+
+    // display the current time
+    this.ctx.fillStyle = "#D0CCCA";
+    this.ctx.font = "20px sans-serif";
+    this.ctx.fillText(
+      `${year}/${month}/${day}`,
+      this.stageWidth / 2 - 100,
+      this.stageHeight / 2 - 30
+    );
+    this.ctx.font = "50px sans-serif";
+    this.ctx.fillText(
+      `${hour}:${minutes}:${seconds}`,
+      this.stageWidth / 2 - 100,
+      this.stageHeight / 2 + 30
+    );
   }
 }
 
