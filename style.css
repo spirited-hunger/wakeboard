@@ -23,13 +23,15 @@ canvas {
 
 #url {
   position: absolute;
-  top: 60%;
+  bottom: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
 
+  color: #D0CCCA;
+
   width: 360px;
-  background: #D0CCCA;
-  font: inherit;
+  background: rgb(208, 204, 202, 0.1);
+  font: sans-serif;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
   border: 0;
   outline: 0;

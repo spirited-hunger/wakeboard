@@ -1,4 +1,4 @@
-const WAKE_UP_TIME = "15:19";
+const WAKE_UP_TIME = "06:00";
 const WAKE_UP_HOURS = WAKE_UP_TIME.split(":")[0];
 const WAKE_UP_MINUTES = WAKE_UP_TIME.split(":")[1];
 
