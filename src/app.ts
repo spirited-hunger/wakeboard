@@ -33,7 +33,6 @@ class App {
 
     this.url.addEventListener("change", () => {
       this.wakeUpURL = this.url.value;
-      console.log(this.wakeUpURL);
     });
 
     this.hour.addEventListener("change", () => {

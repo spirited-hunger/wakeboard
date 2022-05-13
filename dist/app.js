@@ -14,7 +14,6 @@ class App {
         this.wakeUpMinutes = 0;
         this.url.addEventListener("change", () => {
             this.wakeUpURL = this.url.value;
-            console.log(this.wakeUpURL);
         });
         this.hour.addEventListener("change", () => {
             this.wakeUpHours = Number(this.hour.value);
