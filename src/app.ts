@@ -85,7 +85,7 @@ class App {
     }
 
     // display the current time
-    this.ctx.fillStyle = "rgba(208, 204, 202, 0.2)";
+    this.ctx.fillStyle = "rgba(208, 204, 202, 0.1)";
     this.ctx.font = "40px sans-serif";
     this.ctx.fillText(
       `${year}/${month}/${day}`,

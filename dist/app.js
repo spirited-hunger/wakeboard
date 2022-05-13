@@ -49,7 +49,7 @@ class App {
             Number(minutes) !== Number(this.wakeUpMinutes)) {
             opened = false;
         }
-        this.ctx.fillStyle = "rgba(208, 204, 202, 0.2)";
+        this.ctx.fillStyle = "rgba(208, 204, 202, 0.1)";
         this.ctx.font = "40px sans-serif";
         this.ctx.fillText(`${year}/${month}/${day}`, this.stageWidth / 2 - 200, this.stageHeight / 2 - 150);
         this.ctx.font = "100px sans-serif";
