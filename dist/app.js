@@ -12,6 +12,10 @@ class App {
         this.minute = document.getElementById("minute");
         this.wakeUpHours = 6;
         this.wakeUpMinutes = 0;
+        this.url.addEventListener("change", () => {
+            this.wakeUpURL = this.url.value;
+            console.log(this.wakeUpURL);
+        });
         this.hour.addEventListener("change", () => {
             this.wakeUpHours = Number(this.hour.value);
         });
@@ -41,12 +45,12 @@ class App {
         ];
         if (!opened &&
             Number(hour) === Number(this.wakeUpHours) &&
-            Number(minutes) === Number(this.wakeUpMinutes)) {
+            Number(minutes) === Number(this.wakeUpMinutes) &&
+            Number(seconds) === 0) {
             opened = true;
-            window.open(this.url.value, "_blank");
+            window.open(this.wakeUpURL, "_blank");
         }
-        else if (Number(hour) !== Number(this.wakeUpHours) &&
-            Number(minutes) !== Number(this.wakeUpMinutes)) {
+        else if (Number(seconds) !== 0) {
             opened = false;
         }
         this.ctx.fillStyle = "rgba(208, 204, 202, 0.1)";

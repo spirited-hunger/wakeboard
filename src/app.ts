@@ -9,6 +9,7 @@ class App {
   stageHeight: number;
   hour: HTMLInputElement;
   minute: HTMLInputElement;
+  wakeUpURL: string;
   wakeUpHours: number;
   wakeUpMinutes: number;
 
@@ -29,6 +30,11 @@ class App {
 
     this.wakeUpHours = 6;
     this.wakeUpMinutes = 0;
+
+    this.url.addEventListener("change", () => {
+      this.wakeUpURL = this.url.value;
+      console.log(this.wakeUpURL);
+    });
 
     this.hour.addEventListener("change", () => {
       this.wakeUpHours = Number(this.hour.value);
@@ -72,14 +78,14 @@ class App {
     if (
       !opened &&
       Number(hour) === Number(this.wakeUpHours) &&
-      Number(minutes) === Number(this.wakeUpMinutes)
+      Number(minutes) === Number(this.wakeUpMinutes) &&
+      Number(seconds) === 0
     ) {
       opened = true;
-      window.open(this.url.value, "_blank");
+      window.open(this.wakeUpURL, "_blank");
     } else if (
       // night time
-      Number(hour) !== Number(this.wakeUpHours) &&
-      Number(minutes) !== Number(this.wakeUpMinutes)
+      Number(seconds) !== 0
     ) {
       opened = false;
     }
