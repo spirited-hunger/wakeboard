@@ -1,7 +1,3 @@
-const WAKE_UP_TIME = "06:00";
-const WAKE_UP_HOURS = WAKE_UP_TIME.split(":")[0];
-const WAKE_UP_MINUTES = WAKE_UP_TIME.split(":")[1];
-
 let opened = false;
 
 class App {
@@ -11,6 +7,10 @@ class App {
   pixelRatio: number;
   stageWidth: number;
   stageHeight: number;
+  hour: HTMLInputElement;
+  minute: HTMLInputElement;
+  wakeUpHours: number;
+  wakeUpMinutes: number;
 
   constructor() {
     this.canvas = document.createElement("canvas");
@@ -24,6 +24,19 @@ class App {
     this.resize();
 
     this.url = document.getElementById("url") as HTMLInputElement;
+    this.hour = document.getElementById("hour") as HTMLInputElement;
+    this.minute = document.getElementById("minute") as HTMLInputElement;
+
+    this.wakeUpHours = 6;
+    this.wakeUpMinutes = 0;
+
+    this.hour.addEventListener("change", () => {
+      this.wakeUpHours = Number(this.hour.value);
+    });
+
+    this.minute.addEventListener("change", () => {
+      this.wakeUpMinutes = Number(this.minute.value);
+    });
 
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -58,32 +71,32 @@ class App {
 
     if (
       !opened &&
-      Number(hour) === Number(WAKE_UP_HOURS) &&
-      Number(minutes) === Number(WAKE_UP_MINUTES)
+      Number(hour) === Number(this.wakeUpHours) &&
+      Number(minutes) === Number(this.wakeUpMinutes)
     ) {
       opened = true;
       window.open(this.url.value, "_blank");
     } else if (
       // night time
-      Number(hour) !== Number(WAKE_UP_HOURS) &&
-      Number(minutes) !== Number(WAKE_UP_MINUTES)
+      Number(hour) !== Number(this.wakeUpHours) &&
+      Number(minutes) !== Number(this.wakeUpMinutes)
     ) {
       opened = false;
     }
 
     // display the current time
-    this.ctx.fillStyle = "#D0CCCA";
-    this.ctx.font = "20px sans-serif";
+    this.ctx.fillStyle = "rgba(208, 204, 202, 0.2)";
+    this.ctx.font = "40px sans-serif";
     this.ctx.fillText(
       `${year}/${month}/${day}`,
-      this.stageWidth / 2 - 100,
-      this.stageHeight / 2 - 30
+      this.stageWidth / 2 - 200,
+      this.stageHeight / 2 - 150
     );
-    this.ctx.font = "50px sans-serif";
+    this.ctx.font = "100px sans-serif";
     this.ctx.fillText(
       `${hour}:${minutes}:${seconds}`,
-      this.stageWidth / 2 - 100,
-      this.stageHeight / 2 + 30
+      this.stageWidth / 2 - 200,
+      this.stageHeight / 2 - 40
     );
   }
 }

@@ -8,7 +8,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <input type="name" id="url" name="url" placeholder="URL">
+  <div id="main">
+    <div class="waketime">
+      <input type="text" maxlength="2" id="hour" name="hour" value="06" required>
+      <div>:</div>
+      <input type="text" maxlength="2" id="minute" name="minute" value="00" required>
+    </div>
+    <div id="arrow">&#9654;</div>
+    <input type="url" pattern="https?://.+" id="url" name="url" placeholder="URL" required>
+  </div>
   <script type="module" src="./dist/app.js"></script>
 </body>
 </html>

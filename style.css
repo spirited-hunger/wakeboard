@@ -14,6 +14,9 @@ body {
   height: 100%;
   background: linear-gradient(0deg, rgba(48, 60, 66, 1) 0%, rgba(8, 30, 51,1) 80%);
   position: relative;
+  overflow: hidden;
+  color: rgba(208, 204, 202, 0.5);
+  font: 1em sans-serif;
 }
 
 canvas {
@@ -21,19 +24,62 @@ canvas {
   height: 100%;
 }
 
-#url {
+#main {
   position: absolute;
-  bottom: 20%;
+  bottom: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  color: #D0CCCA;
+  display: flex;
+  flex-direction: row;
+}
 
-  width: 360px;
+input {
+  color: rgba(208, 204, 202, 0.7);
+
   background: rgb(208, 204, 202, 0.1);
   font: sans-serif;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
   border: 0;
   outline: 0;
+}
+
+#url {
+  width: 350px;
+  height: 55px;
   padding: 22px 18px;
+  margin-top: 5px;
+  font-size: 15px;
+}
+
+.waketime {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 5px;
+  font-size: 40px;
+  height: 55px;
+}
+
+#hour {
+  margin-right: 5px;
+  width: 55px;
+  padding: 12px 11px;
+  font-size: 30px;
+}
+
+#minute {
+  margin-left: 5px;
+  width: 55px;
+  padding: 12px 11px;
+  font-size: 30px;
+}
+
+#arrow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 15px;
 }
