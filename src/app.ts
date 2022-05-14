@@ -64,7 +64,7 @@ class App {
     // get the current time
     const date = new Date();
     const [month, day, year, hour, minutes, seconds] = [
-      date.getMonth(),
+      date.getMonth() + 1,
       date.getDate(),
       date.getFullYear(),
       date.getHours().toString().padStart(2, "0"),
