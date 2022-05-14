@@ -35,7 +35,7 @@ class App {
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
         const date = new Date();
         const [month, day, year, hour, minutes, seconds] = [
-            date.getMonth(),
+            date.getMonth() + 1,
             date.getDate(),
             date.getFullYear(),
             date.getHours().toString().padStart(2, "0"),
